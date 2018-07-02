@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <cmath>
 
 #include <megaclient.h>
 #include <sys/stat.h>
@@ -69,7 +70,7 @@ int CacheManager::numChunks(size_t pos)
 		end +=i*ChunkedHash::SEGSIZE;
 		if(end >= pos) return i;
 	}
-	return 8 + ceil(float(pos-end)/(8.0*ChunkedHash::SEGSIZE));
+	return 8 + std::ceil(float(pos-end)/(8.0*ChunkedHash::SEGSIZE));
 	
 	
 }
